@@ -20,16 +20,16 @@ sudo ./setup-karmada.sh
 ```
 
 ### member clsuter 등록
-각 member cluster에서 다음 명령을 시행(해당 값을 복사)
+- 각 member cluster에서 다음 명령을 시행(해당 값을 복사)
 ```
 kubectl config view --raw --flatten > <MEMBER_CLUSTER_NAME>.kubeconfig
 cat <MEMBER_CLUSTER_NAME>.kubeconfig
 ```
-Management cluster에서 동일한 파일을 만들고 각 member cluster 등록
+- Management cluster에서 동일한 파일을 만들고 각 member cluster 등록
 ```
 kubectl karmada --kubeconfig /etc/karmada/karmada-apiserver.config  join <CLUSTER_NAME> --cluster-kubeconfig=<MEMBER_CLUSTER_NAME>.kubeconfig
 ```
-등록 취소시
+- 등록 취소시
 ```
 kubectl karmada --kubeconfig /etc/karmada/karmada-apiserver.config unjoin <MEMBER_CLUSTER_NAME>
 ```
@@ -38,7 +38,7 @@ kubectl karmada --kubeconfig /etc/karmada/karmada-apiserver.config unjoin <MEMBE
 ```
 export KUBECONFIG=/etc/karmada/karmada-apiserver.config
 ```
-이후 기존 kubernetes api server를 가리키기 위해선 다음을 사용
+- 이후 기존 kubernetes api server를 가리키기 위해선 다음을 사용
 ```
 kubectl --kubeconfig /etc/kubernetes/admin.conf ...
 or
@@ -55,6 +55,7 @@ export MINIO_ROOT_USER=minio
 export MINIO_ROOT_PASSWORD=minio123
 ./minio server /data --console-address="{SERVER_EXTERNAL_IP}:20001" --address="{SERVER_EXTERNAL_IP}:9000"
 ```
+- 이후 {SERVER_EXTERNAL_IP}:20001 에 접속하여 bucket 생성
 
 ### Velero 설치
 **각 멤버클러스터에 CLI 설치**
