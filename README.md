@@ -1,4 +1,4 @@
-# Karmada_velero
+# Karmada-Velero
 - scripts using karmada and velero
 - 다음 환경은 Push 모드로 구성한다.
 
@@ -82,3 +82,8 @@ velero install \
 --use-volume-snapshots=false \
 --backup-location-config region=minio,s3ForcePathStyle="true",s3Url=http://{SERVER_EXTERNAL_IP}:9000
 ```
+
+## NFS 구성
+각 Cluster에 사용할 스토리지를 NFS를 이용한다.
+
+### NFS 서버 구성
