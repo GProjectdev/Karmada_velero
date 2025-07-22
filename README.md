@@ -15,8 +15,8 @@ sudo su -
 ### Karamda management cluster구성
 ```
 git clone https://github.com/GProjectdev/Karmada_velero.git
-chmod +x setup-karmada.sh
-sudo ./setup-karmada.sh
+chmod +x Karmada_velero/setup-karmada.sh
+sudo ./Karmada_velero/setup-karmada.sh
 ```
 
 ### member clsuter 등록
@@ -87,3 +87,36 @@ velero install \
 각 Cluster에 사용할 스토리지를 NFS를 이용한다.
 
 ### NFS 서버 구성
+```
+chmod +x Karmada_velero/setup-nfs-server.sh
+sudo ./Karmada_velero/setup-nfs-server.sh
+```
+
+### 각 서버에 NFS-provisioner 설치(Helm 이용)
+1. NFS-common 설치
+```
+sudo apt-get install -y nfs-common
+```
+2. Helm 설치
+```
+sudo apt-get update  
+curl https://baltocdn.com/helm/signing.asc | sudo apt-key add - 
+sudo apt-get install apt-transport-https --yes 
+echo "deb https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list 
+sudo apt-get update 
+sudo apt-get install helm
+```
+3. Namespace 생성
+```
+kubectl create namespace nfs-provisioner
+```
+4. Helm을 이용한 NFS-provisioner 구성
+```
+helm repo add nfs-subdir-external-provisioner https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
+helm repo update 
+helm install nfs-subdir-external-provisioner nfs-subdir-external-provisioner/nfs-subdir-external-provisioner \
+--set nfs.server={NFS_SERVER} \
+--set nfs.path=/mnt/nfs \
+--set storageClass.defaultClass=true \
+--set storageClass.reclaimPolicy=Retain
+```
