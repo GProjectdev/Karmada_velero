@@ -60,7 +60,7 @@ export MINIO_ROOT_PASSWORD=minio123
 ### Velero 설치
 **각 멤버클러스터에 CLI 설치**
 ```
-wget https://github.com/vmware-tanzu/velero/releases/download/v1.7.0/velero-v1.16.0-linux-amd64.tar.gz
+wget https://github.com/vmware-tanzu/velero/releases/download/v1.16.0/velero-v1.16.0-linux-amd64.tar.gz
 tar -zxvf velero-v1.16.0-linux-amd64.tar.gz
 cp velero-v1.16.0-linux-amd64/velero /usr/local/bin/
 ```
