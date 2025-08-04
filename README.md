@@ -72,15 +72,16 @@ aws_access_key_id = minio
 aws_secret_access_key = minio123
 ```
 
-**이후 Velero 설치**
+**이후 Velero 설치(File System Backup을 위한 Node Agent Daemonset추가)**
 ```
 velero install \
---provider aws \
---plugins velero/velero-plugin-for-aws:v1.2.1 \
---bucket velero \
---secret-file ./credentials-velero \
---use-volume-snapshots=false \
---backup-location-config region=minio,s3ForcePathStyle="true",s3Url=http://{SERVER_EXTERNAL_IP}:9000
+  --provider aws \
+  --plugins velero/velero-plugin-for-aws:v1.2.1 \
+  --bucket velero \
+  --secret-file ./credentials-velero \
+  --use-node-agent \
+  --use-volume-snapshots=false \
+  --backup-location-config region=minio,s3ForcePathStyle="true",s3Url=http://{SERVER_EXTERNAL_IP}:9000
 ```
 
 ## NFS 구성
