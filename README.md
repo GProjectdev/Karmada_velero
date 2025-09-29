@@ -19,7 +19,7 @@ chmod +x Karmada_velero/setup-karmada.sh
 sudo ./Karmada_velero/setup-karmada.sh
 ```
 
-### member clsuter 등록
+### member clsuter 등록(Push Mode)
 - 각 member cluster에서 다음 명령을 시행(해당 값을 복사)
 ```
 kubectl config view --raw --flatten > <MEMBER_CLUSTER_NAME>.kubeconfig
