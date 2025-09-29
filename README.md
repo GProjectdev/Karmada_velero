@@ -100,12 +100,9 @@ sudo apt-get install -y nfs-common
 ```
 2. Helm 설치
 ```
-sudo apt-get update  
-curl https://baltocdn.com/helm/signing.asc | sudo apt-key add - 
-sudo apt-get install apt-transport-https --yes 
-echo "deb https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list 
-sudo apt-get update 
-sudo apt-get install helm
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+chmod 700 get_helm.sh
+./get_helm.sh
 ```
 3. Namespace 생성
 ```
